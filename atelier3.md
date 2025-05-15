@@ -1,0 +1,1 @@
+Les ateliers suivants ne sont pas réalisable n'ayant pas eu les machines virtuelles adéquates.

@@ -1,24 +1,24 @@
-![alt text](image-64.png)
+![alt text](img/image-64.png)
 # Challenge cybersécurité windows
 
 ### Démonstration vidéo de l'attaque Kerberoast
-[![alt text](minia_video.png)](https://youtu.be/nf0wV-eWYpw)
+[![alt text](img/minia_video.png)](https://youtu.be/nf0wV-eWYpw)
 https://youtu.be/nf0wV-eWYpw?si=qhRCg0UajgfGL7oG
 ## Avant :
 
 **[Rapport pinkcastle avant correction](rapport_pinkcastle/Apres/ad_hc_esn20.dom.html)**  
 
 Privileged account : 70/100
-![Privileged account](image-39.png)
+![Privileged account](img/image-39.png)
 
 Anomalies analysis :  70/100
-![alt text](image-40.png)
+![alt text](img/image-40.png)
 
 Stale objects : 61/100
-![alt text](image-41.png)
+![alt text](img/image-41.png)
 
 Indicators global : 70/100
-![alt text](image-42.png)
+![alt text](img/image-42.png)
 
 
 ## Corrections :
@@ -36,7 +36,7 @@ ForEach-Object {
 }
 ```
 
-![alt text](image-43.png)
+![alt text](img/image-43.png)
 
 ### 2. Éviter l’utilisation du compte Administrateur natif
 -  Le compte Administrator a été utilisé récemment
@@ -61,12 +61,12 @@ Where-Object {($_.PasswordNotRequired -eq $true)} |
 Set-ADUser -PasswordNotRequired $false
 ```
 On peux également renforcer la GPO :
-![alt text](image-44.png)
+![alt text](img/image-44.png)
 
 
 ### 4. Bloquer NTLMv1 / LAN Manager
     - Network security: LAN Manager authentication level = "Send NTLMv2 response only. Refuse LM & NTLM" 
- ![alt text](image-45.png)
+ ![alt text](img/image-45.png)
 
 ### 5. Installer LAPS
 - ✅ Enable password backup for LAPS = Enabled
@@ -78,16 +78,16 @@ On peux également renforcer la GPO :
 - ✅ Password Settings > Password length = 16
 
 - ✅ Password complexity = Enabled
-![alt text](image-46.png)
+![alt text](img/image-46.png)
 
 ### 6. Faire une sauvegarde Active Directory
 - **Solution :**
 ```powershell
 wbadmin start systemstatebackup -backuptarget:D:\
 ```
-![alt text](image-47.png)
-![alt text](image-48.png)
-![alt text](image-49.png)
+![alt text](img/image-47.png)
+![alt text](img/image-48.png)
+![alt text](img/image-49.png)
 
 ### 7. Vérifier les comptes de service
 - **Solution :**
@@ -106,7 +106,7 @@ Retrait du SPN
 ```powershell
 Set-ADUser -Identity "svc-backup" -ServicePrincipalNames @{}
 ```
-![alt text](image-50.png)
+![alt text](img/image-50.png)
 
 
 ### 8. Activer la corbeille Active Directory
@@ -116,7 +116,7 @@ Enable-ADOptionalFeature "Recycle Bin Feature" `
  -Scope ForestOrConfigurationSet `
  -Target "esn20.dom"
 ```
-![alt text](image-51.png)
+![alt text](img/image-51.png)
 
 
 ### 9. Retirer admin du Schema Admins
@@ -126,7 +126,7 @@ Get-ADGroupMember "Schema Admins" | ForEach-Object {
     Remove-ADGroupMember -Identity "Schema Admins" -Members $_ -Confirm:$false
 }
 ```
-![alt text](image-52.png)
+![alt text](img/image-52.png)
 
 ### 10. Stopper service print spoooler :
 - **Solution :** On l'enleve, puisqu'on n'host jamais le service d'impression sur un serveur de domaine !
@@ -134,24 +134,24 @@ Get-ADGroupMember "Schema Admins" | ForEach-Object {
 Stop-Service -Name Spooler -Force
 Set-Service -Name Spooler -StartupType Disabled
 ```
-![alt text](image-53.png)
+![alt text](img/image-53.png)
 
 ### 11. Mettre en place une politique d'audit complete sur les dc
 - **Solution :** Créer une GPO :
-![alt text](image-54.png)
-![alt text](image-55.png)
-![alt text](image-56.png)
-![alt text](image-57.png)
-![alt text](image-58.png)
-![alt text](image-59.png)
-![alt text](image-60.png)
+![alt text](img/image-54.png)
+![alt text](img/image-55.png)
+![alt text](img/image-56.png)
+![alt text](img/image-57.png)
+![alt text](img/image-58.png)
+![alt text](img/image-59.png)
+![alt text](img/image-60.png)
 
 
 ## Vérification des résultats
 Il n'est plus possible de refaire l'attaque kerberoast, le mot de passe est trop long et complexe, il change régulierement, et le compte de service n'est plus dans le SPN.
-![alt text](image-61.png)
+![alt text](img/image-61.png)
 
 ### Resultats pinkcastle (voir directory /rapport_pinkcastle/avant et /apres)
-![alt text](image-62.png)
+![alt text](img/image-62.png)
 
 Certains critères sont peu représentatif, notamment pour l'histoire de l'admin qui s'est connecté il y a 6 jours (et donc reste dans pinkcastle...), ainsi que LAPS qui, je ne sais pas pourquoi, n'est pas pris en compte dans le rapport. J'ai du mal faire une install.  C'était interessant ! :D
