@@ -154,4 +154,4 @@ Il n'est plus possible de refaire l'attaque kerberoast, le mot de passe est trop
 ### Resultats pinkcastle (voir directory /rapport_pinkcastle/avant et /apres)
 ![alt text](img/image-62.png)
 
-Certains critères sont peu représentatif, notamment pour l'histoire de l'admin qui s'est connecté il y a 6 jours (et donc reste dans pinkcastle...), ainsi que LAPS qui, je ne sais pas pourquoi, n'est pas pris en compte dans le rapport. J'ai du mal faire une install.  C'était interessant ! :D
+Certains critères sont peu représentatif, notamment pour l'histoire de l'admin qui s'est connecté il y a 6 jours (et donc reste dans pinkcastle...), ainsi que LAPS qui, je ne sais pas pourquoi, n'est pas pris en compte dans le rapport mais pourtant bien configuré
