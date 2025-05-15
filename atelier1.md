@@ -1,3 +1,4 @@
+![alt text](image-65.png)
 # Atelier 1 :  Action de reconaissance
 
 ## Exercice 1 - Préparer l’environnement

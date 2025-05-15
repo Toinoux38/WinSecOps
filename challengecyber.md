@@ -1,6 +1,5 @@
+![alt text](image-64.png)
 # Challenge cybersécurité windows
----
-##### Houllier Antoine | 3ICS
 
 ### Démonstration vidéo de l'attaque Kerberoast
 [![alt text](minia_video.png)](https://youtu.be/nf0wV-eWYpw)

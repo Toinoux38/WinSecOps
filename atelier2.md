@@ -1,3 +1,4 @@
+![alt text](image-66.png)
 # Atelier 2 : Compromission de credentials
 ---
 
