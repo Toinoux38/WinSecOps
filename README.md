@@ -18,7 +18,3 @@ Bienvenue dans ce projet dédié à la cybersécurité sur des environnements Wi
 Renforcer vos compétences en cybersécurité grâce à des exercices pratiques et un challenge immersif.
 
 ---
-
-## 📧 Contact
-
-Pour toute question : **Houllier Antoine | 3ICS**
